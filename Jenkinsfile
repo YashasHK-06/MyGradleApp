@@ -5,13 +5,19 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/Yashaswiiii8/MyGradleApp.git'
+                git branch: 'main', url: 'https://github.com/Yashaswiiii8/MyGradleApp.git'
+            }
+        }
+
+        stage('Setup Permissions') {
+            steps {
+                sh 'chmod +x gradlew'
             }
         }
 
         stage('Build') {
             steps {
-               sh './gradlew build -Dorg.gradle.java.home=/opt/jdk17'
+                sh './gradlew clean build'
             }
         }
 
